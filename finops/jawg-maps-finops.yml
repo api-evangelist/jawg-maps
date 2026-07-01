@@ -1,0 +1,108 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Jawg Maps
+providerId: jawg-maps
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Maps
+- Geospatial
+- Tiles
+- Geocoding
+- Routing
+- Location
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Jawg spend. Jawg bills on a request-based subscription model:
+  a monthly plan includes a request allowance shared across Maps (tiles),
+  Places, Routing, Matrix, Isochrone, and Static Maps, with overage or an
+  upgrade beyond the allowance. Cost is therefore driven by total API request
+  volume, so caching tiles and geocoding results is the primary lever.
+notes: >-
+  Per-plan request allowances and prices are subject to change; verify against
+  the Jawg pricing page during reconciliation.
+sources:
+- https://www.jawg.io/en/pricing/
+- https://www.jawg.io/docs/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Jawg
+serviceCategory: Maps and Location
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: EUR
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Jawg Maps
+  ServiceCategory: Maps and Location
+  ProviderName: Jawg
+  PublisherName: Jawg
+  InvoiceIssuerName: Jawg
+  BillingCurrency: EUR
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Based
+meters:
+- name: tile_requests
+  description: Raster and vector map tile fetches, counted against the monthly request allowance.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - style
+- name: static_map_requests
+  description: Static map image renders, counted against the monthly request allowance.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+- name: places_requests
+  description: Geocoding, autocomplete, reverse, and place-detail calls to the Places API.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - endpoint
+- name: routing_requests
+  description: Routing and optimized_route calls (Valhalla).
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - costing
+- name: matrix_requests
+  description: sources_to_targets time-distance matrix calls.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+- name: isochrone_requests
+  description: Isochrone / isodistance contour calls.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track request volume per API and per token in the Jawg App account against the monthly allowance.
+- name: Allocation
+  description: Issue a distinct access token per app/environment and domain-restrict it to map spend to a workload.
+- name: Optimization
+  description: Cache tiles and geocoding/reverse results, debounce autocomplete, and reuse static map images to cut request volume.
+- name: Accountability
+  description: Assign an owner per token; review monthly request burn against the plan allowance and upgrade before overage.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

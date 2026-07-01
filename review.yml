@@ -1,0 +1,72 @@
+aid: jawg-maps
+name: Jawg Maps
+review:
+  question: Does Jawg Maps expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No streaming or event-driven surface (WebSocket or HTTP Server-Sent
+    Events) is documented for Jawg. All Jawg products are request/response
+    over HTTPS - tile fetches, static image renders, geocoding, and Valhalla
+    routing/matrix/isochrone calls - so no AsyncAPI document was authored.
+findings:
+  summary: |
+    Jawg does not publish a documented public WebSocket API. The platform is
+    entirely HTTPS request/response. Map tiles and TileJSON/style documents
+    are served from tile.jawg.io and api.jawg.io; Places geocoding, Valhalla
+    routing, sources_to_targets matrix, isochrone, and static maps are served
+    from api.jawg.io. Every surface authenticates with a Jawg access token
+    passed as the access-token query parameter (Bearer header also accepted on
+    api.jawg.io). No realtime, bidirectional, or streaming WebSocket
+    (ws:// or wss://) endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.jawg.io
+      documented: true
+    - protocol: XYZ Tiles
+      scheme: https
+      baseURL: https://tile.jawg.io
+      note: Slippy-map tile fetches over HTTPS GET; not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Jawg API docs as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://tile.jawg.io/{styleId}/{z}/{x}/{y}.png
+    - GET  https://tile.jawg.io/{styleId}/{z}/{x}/{y}.pbf
+    - GET  https://tile.jawg.io/{styleId}/wmts
+    - GET  https://api.jawg.io/styles/{styleId}.json
+    - GET  https://api.jawg.io/styles/{styleId}/tilejson.json
+    - GET  https://api.jawg.io/places/v1/search
+    - GET  https://api.jawg.io/places/v1/autocomplete
+    - GET  https://api.jawg.io/places/v1/reverse
+    - GET  https://api.jawg.io/places/v1/place/{id}
+    - POST https://api.jawg.io/routing/route
+    - POST https://api.jawg.io/routing/optimized_route
+    - POST https://api.jawg.io/routing/sources_to_targets
+    - POST https://api.jawg.io/routing/isochrone
+    - GET  https://api.jawg.io/static
+sources:
+  - url: https://www.jawg.io/docs/
+    type: Documentation
+    note: Documentation home; all products are HTTPS request/response, no WebSocket mentioned.
+  - url: https://www.jawg.io/docs/apidocs/maps/
+    type: APIReference
+    note: Tiles, styles, TileJSON, dynamic and static maps over HTTPS GET.
+  - url: https://www.jawg.io/docs/apidocs/places/
+    type: APIReference
+    note: Places geocoding endpoints are HTTPS GET under api.jawg.io/places/v1.
+  - url: https://www.jawg.io/docs/apidocs/routing/
+    type: APIReference
+    note: Valhalla-based routing/matrix/isochrone over HTTPS POST; no WebSocket surface.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or streaming/event protocol surface exists for Jawg. No
+    AsyncAPI document was created because there is no streaming transport to
+    model; all products are HTTPS request/response.

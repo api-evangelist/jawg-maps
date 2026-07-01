@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jawg Maps API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "access-token",
+        "value": "{{accessToken}}",
+        "in": "query"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tiles & Styles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a raster (PNG) map tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/jawg-streets/12/2048/1362.png?access-token={{accessToken}}"
+          },
+          "docs": "Returns a raster map tile in the XYZ slippy-map scheme for the given hosted style."
+        },
+        {
+          "info": {
+            "name": "Get a vector (MVT) map tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/jawg-streets/12/2048/1362.pbf?access-token={{accessToken}}"
+          },
+          "docs": "Returns a Mapbox Vector Tile for the given hosted style."
+        },
+        {
+          "info": {
+            "name": "Get the style JSON document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jawg.io/styles/jawg-streets.json?access-token={{accessToken}}"
+          },
+          "docs": "Returns the Mapbox GL style specification JSON for the hosted style."
+        },
+        {
+          "info": {
+            "name": "Get the TileJSON metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jawg.io/styles/jawg-streets/tilejson.json?access-token={{accessToken}}"
+          },
+          "docs": "Returns a TileJSON metadata document describing the tileset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Places",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Forward geocoding search.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jawg.io/places/v1/search?text=10 rue de la paix, Paris&size=10&access-token={{accessToken}}"
+          },
+          "docs": "Searches for places and addresses matching a free-text query."
+        },
+        {
+          "info": {
+            "name": "Autocomplete.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jawg.io/places/v1/autocomplete?text=10 rue de la pa&access-token={{accessToken}}"
+          },
+          "docs": "Returns type-ahead suggestions for a partial text query."
+        },
+        {
+          "info": {
+            "name": "Reverse geocoding.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jawg.io/places/v1/reverse?point.lat=48.8534&point.lon=2.3488&access-token={{accessToken}}"
+          },
+          "docs": "Returns the places nearest to a latitude/longitude coordinate."
+        },
+        {
+          "info": {
+            "name": "Place details by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jawg.io/places/v1/place/openstreetmap:venue:node/12345?access-token={{accessToken}}"
+          },
+          "docs": "Returns the full record for a place identified by its gid."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Compute a route.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jawg.io/routing/route?access-token={{accessToken}}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"locations\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 },\n    { \"lat\": 45.7640, \"lon\": 4.8357 }\n  ],\n  \"costing\": \"auto\"\n}"
+            }
+          },
+          "docs": "Valhalla turn-by-turn routing between two or more locations."
+        },
+        {
+          "info": {
+            "name": "Compute an optimized route.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jawg.io/routing/optimized_route?access-token={{accessToken}}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"locations\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 },\n    { \"lat\": 48.8606, \"lon\": 2.3376 },\n    { \"lat\": 48.8530, \"lon\": 2.3499 }\n  ],\n  \"costing\": \"pedestrian\"\n}"
+            }
+          },
+          "docs": "Valhalla optimized_route (traveling-salesman) service."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Matrix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Compute a time-distance matrix.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jawg.io/routing/sources_to_targets?access-token={{accessToken}}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"sources\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 }\n  ],\n  \"targets\": [\n    { \"lat\": 45.7640, \"lon\": 4.8357 },\n    { \"lat\": 43.2965, \"lon\": 5.3698 }\n  ],\n  \"costing\": \"auto\"\n}"
+            }
+          },
+          "docs": "Valhalla sources_to_targets time-distance matrix service."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Isochrone",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Compute isochrone contours.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jawg.io/routing/isochrone?access-token={{accessToken}}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"locations\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 }\n  ],\n  \"costing\": \"pedestrian\",\n  \"contours\": [\n    { \"time\": 5 },\n    { \"time\": 10 }\n  ],\n  \"polygons\": true\n}"
+            }
+          },
+          "docs": "Valhalla isochrone service returning GeoJSON reachability contours."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Static Maps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Render a static map image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jawg.io/static?layer=jawg-sunny&center=48.856,2.351&zoom=12&size=400x300&format=png&access-token={{accessToken}}"
+          },
+          "docs": "Renders a standalone map image from a center, zoom, and size."
+        }
+      ]
+    }
+  ]
+}

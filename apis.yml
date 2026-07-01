@@ -1,0 +1,178 @@
+aid: jawg-maps
+url: https://raw.githubusercontent.com/api-evangelist/jawg-maps/refs/heads/main/apis.yml
+name: Jawg Maps
+kind: company
+description: Jawg is a French location platform delivering customizable vector and
+  raster map tiles, hosted map styles, geocoding and places search, routing,
+  isochrones, distance matrices, and static maps. All surfaces are authenticated
+  with a Jawg access token passed as an access-token query parameter (or header)
+  and are served from tile.jawg.io and api.jawg.io.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Maps
+- Geospatial
+- Tiles
+- Geocoding
+- Routing
+- Location
+created: '2026-07-01'
+modified: '2026-07-01'
+specificationVersion: '0.19'
+apis:
+- aid: jawg-maps:jawg-maps-map-tiles-styles-api
+  name: Jawg Map Tiles & Styles API
+  tags:
+  - Tiles
+  - Vector Tiles
+  - Raster Tiles
+  - Styles
+  - TileJSON
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.jawg.io/docs/apidocs/maps/
+  baseURL: https://tile.jawg.io
+  properties:
+  - url: https://www.jawg.io/docs/apidocs/maps/
+    type: Documentation
+  - url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+    type: APIReference
+  - url: openapi/jawg-maps-openapi.yml
+    type: OpenAPI
+  - url: collections/jawg-maps.postman_collection.json
+    type: PostmanCollection
+  - url: collections/jawg-maps.opencollection.json
+    type: OpenCollection
+  description: Serves customizable slippy-map tiles in the XYZ scheme for both vector
+    (Mapbox Vector Tile) and raster (PNG) formats using a hosted style ID, plus the
+    style JSON and TileJSON metadata documents. Supports retina @2x tiles, language
+    and worldview parameters, and a WMTS entrypoint.
+- aid: jawg-maps:jawg-maps-places-geocoding-api
+  name: Jawg Places / Geocoding API
+  tags:
+  - Geocoding
+  - Places
+  - Search
+  - Autocomplete
+  - Reverse Geocoding
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.jawg.io/docs/apidocs/places/
+  baseURL: https://api.jawg.io/places/v1
+  properties:
+  - url: https://www.jawg.io/docs/apidocs/places/
+    type: Documentation
+  - url: https://www.jawg.io/docs/apidocs/places/search/
+    type: APIReference
+  - url: openapi/jawg-maps-openapi.yml
+    type: OpenAPI
+  - url: collections/jawg-maps.postman_collection.json
+    type: PostmanCollection
+  - url: collections/jawg-maps.opencollection.json
+    type: OpenCollection
+  description: Forward geocoding, autocomplete, reverse geocoding, and place-detail
+    lookup returning GeoJSON features. Results can be biased and filtered by point,
+    bounding box, layers, sources, and country.
+- aid: jawg-maps:jawg-maps-routing-api
+  name: Jawg Routing API
+  tags:
+  - Routing
+  - Directions
+  - Valhalla
+  - Turn by Turn
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.jawg.io/docs/apidocs/routing/
+  baseURL: https://api.jawg.io/routing
+  properties:
+  - url: https://www.jawg.io/docs/apidocs/routing/
+    type: Documentation
+  - url: https://www.jawg.io/docs/apidocs/routing/osrm/
+    type: APIReference
+  - url: openapi/jawg-maps-openapi.yml
+    type: OpenAPI
+  - url: collections/jawg-maps.postman_collection.json
+    type: PostmanCollection
+  - url: collections/jawg-maps.opencollection.json
+    type: OpenCollection
+  description: Valhalla-based turn-by-turn routing computing the shortest route or
+    distance between locations across auto, bicycle, and pedestrian costing models,
+    plus an optimized_route (traveling-salesman) endpoint. An OSRM-compatible routing
+    surface is also available.
+- aid: jawg-maps:jawg-maps-matrix-api
+  name: Jawg Matrix API
+  tags:
+  - Matrix
+  - Distance Matrix
+  - Valhalla
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.jawg.io/docs/apidocs/routing/
+  baseURL: https://api.jawg.io/routing
+  properties:
+  - url: https://www.jawg.io/docs/apidocs/routing/
+    type: Documentation
+  - url: openapi/jawg-maps-openapi.yml
+    type: OpenAPI
+  - url: collections/jawg-maps.postman_collection.json
+    type: PostmanCollection
+  - url: collections/jawg-maps.opencollection.json
+    type: OpenCollection
+  description: Valhalla sources_to_targets time-distance matrix service computing
+    travel time and distance between every source and every target location for a
+    given costing model.
+- aid: jawg-maps:jawg-maps-isochrone-api
+  name: Jawg Isochrone API
+  tags:
+  - Isochrone
+  - Reachability
+  - Valhalla
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.jawg.io/docs/apidocs/routing/
+  baseURL: https://api.jawg.io/routing
+  properties:
+  - url: https://www.jawg.io/docs/apidocs/routing/
+    type: Documentation
+  - url: openapi/jawg-maps-openapi.yml
+    type: OpenAPI
+  - url: collections/jawg-maps.postman_collection.json
+    type: PostmanCollection
+  - url: collections/jawg-maps.opencollection.json
+    type: OpenCollection
+  description: Valhalla isochrone service computing areas reachable within specified
+    time or distance intervals from one or more locations, returned as GeoJSON
+    polygon or line contours.
+- aid: jawg-maps:jawg-maps-static-maps-api
+  name: Jawg Static Maps API
+  tags:
+  - Static Maps
+  - Images
+  - Markers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.jawg.io/docs/apidocs/maps/static-maps/
+  baseURL: https://api.jawg.io
+  properties:
+  - url: https://www.jawg.io/docs/apidocs/maps/static-maps/
+    type: Documentation
+  - url: openapi/jawg-maps-openapi.yml
+    type: OpenAPI
+  - url: collections/jawg-maps.postman_collection.json
+    type: PostmanCollection
+  - url: collections/jawg-maps.opencollection.json
+    type: OpenCollection
+  description: Renders a standalone map image (PNG/JPEG) from a center, zoom, and
+    size, or from an auto-fit set of features, with optional markers and paths - for
+    display on web and mobile without JavaScript.
+common:
+- type: GitHubOrganization
+  url: https://github.com/jawg
+- type: LinkedIn
+  url: https://www.linkedin.com/company/jawg-maps
+- type: Website
+  url: https://www.jawg.io/
+- type: Documentation
+  url: https://www.jawg.io/docs/
+- type: Plans
+  url: plans/jawg-maps-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/jawg-maps-rate-limits.yml
+- type: FinOps
+  url: finops/jawg-maps-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

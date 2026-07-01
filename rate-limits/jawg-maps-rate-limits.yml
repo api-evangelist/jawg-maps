@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Jawg Maps
+providerId: jawg-maps
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Maps
+- Geospatial
+- Tiles
+- Geocoding
+- Routing
+- Location
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Jawg enforces per-account limits along two axes: a monthly included-request
+  quota tied to the subscription plan (shared across tiles, Places, routing,
+  matrix, isochrone, and static maps), and a short-window requests-per-second
+  throttle that scales up with the plan tier. Exceeding the RPS throttle
+  returns HTTP 429; exhausting the monthly quota blocks further requests until
+  the quota resets or an overage / upgrade is in place. Access tokens can be
+  domain-restricted to control where they may be used.
+notes: >-
+  Specific per-plan RPS and monthly request quotas are published on the Jawg
+  pricing page and in the Jawg App account. Values below are not reconciled to
+  exact numbers.
+sources:
+- https://www.jawg.io/en/pricing/
+- https://www.jawg.io/docs/
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Second (RPS)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Short-window throttle that scales with the subscription plan; bursts above it return 429.
+- name: Monthly Request Quota
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Included monthly request allowance shared across all Jawg APIs; varies by plan.
+- name: Tile Requests
+  scope: account
+  metric: requests
+  limit: counted against the monthly quota
+  notes: Each raster/vector tile fetch counts as a request against the shared quota.
+- name: Places / Routing / Matrix / Isochrone Requests
+  scope: account
+  metric: requests
+  limit: counted against the monthly quota
+  notes: API calls to Places, routing, matrix, and isochrone count against the same shared quota.
+policies:
+- name: Tiered Limits
+  description: RPS throttle and monthly request quota rise as accounts move from Free to Starter, Business, and Enterprise.
+- name: Token Domain Restriction
+  description: Access tokens can be restricted to allowed domains/referrers to prevent unauthorized use.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on HTTP 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

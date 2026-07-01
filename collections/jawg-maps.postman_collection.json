@@ -1,0 +1,286 @@
+{
+  "info": {
+    "name": "Jawg Maps API",
+    "description": "Jawg location platform: map tiles and styles, Places geocoding, Valhalla routing, matrix, isochrone, and static maps. All requests authenticate with a Jawg access token supplied as the access-token query parameter.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "tileBaseUrl",
+      "value": "https://tile.jawg.io"
+    },
+    {
+      "key": "apiBaseUrl",
+      "value": "https://api.jawg.io"
+    },
+    {
+      "key": "accessToken",
+      "value": "YOUR_JAWG_ACCESS_TOKEN"
+    },
+    {
+      "key": "styleId",
+      "value": "jawg-streets"
+    }
+  ],
+  "item": [
+    {
+      "name": "Tiles & Styles",
+      "item": [
+        {
+          "name": "Get raster (PNG) tile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{tileBaseUrl}}/{{styleId}}/12/2048/1362.png?access-token={{accessToken}}",
+              "host": ["{{tileBaseUrl}}"],
+              "path": ["{{styleId}}", "12", "2048", "1362.png"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get vector (MVT) tile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{tileBaseUrl}}/{{styleId}}/12/2048/1362.pbf?access-token={{accessToken}}",
+              "host": ["{{tileBaseUrl}}"],
+              "path": ["{{styleId}}", "12", "2048", "1362.pbf"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get style JSON",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiBaseUrl}}/styles/{{styleId}}.json?access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["styles", "{{styleId}}.json"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get TileJSON",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiBaseUrl}}/styles/{{styleId}}/tilejson.json?access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["styles", "{{styleId}}", "tilejson.json"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Places",
+      "item": [
+        {
+          "name": "Forward geocoding search",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiBaseUrl}}/places/v1/search?text=10 rue de la paix, Paris&size=10&access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["places", "v1", "search"],
+              "query": [
+                { "key": "text", "value": "10 rue de la paix, Paris" },
+                { "key": "size", "value": "10" },
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Autocomplete",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiBaseUrl}}/places/v1/autocomplete?text=10 rue de la pa&access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["places", "v1", "autocomplete"],
+              "query": [
+                { "key": "text", "value": "10 rue de la pa" },
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Reverse geocoding",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiBaseUrl}}/places/v1/reverse?point.lat=48.8534&point.lon=2.3488&access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["places", "v1", "reverse"],
+              "query": [
+                { "key": "point.lat", "value": "48.8534" },
+                { "key": "point.lon", "value": "2.3488" },
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Place details by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiBaseUrl}}/places/v1/place/openstreetmap:venue:node/12345?access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["places", "v1", "place", "openstreetmap:venue:node/12345"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Routing",
+      "item": [
+        {
+          "name": "Compute route",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 },\n    { \"lat\": 45.7640, \"lon\": 4.8357 }\n  ],\n  \"costing\": \"auto\",\n  \"directions_options\": { \"units\": \"kilometers\" }\n}"
+            },
+            "url": {
+              "raw": "{{apiBaseUrl}}/routing/route?access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["routing", "route"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Compute optimized route",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 },\n    { \"lat\": 48.8606, \"lon\": 2.3376 },\n    { \"lat\": 48.8530, \"lon\": 2.3499 },\n    { \"lat\": 48.8738, \"lon\": 2.2950 }\n  ],\n  \"costing\": \"pedestrian\"\n}"
+            },
+            "url": {
+              "raw": "{{apiBaseUrl}}/routing/optimized_route?access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["routing", "optimized_route"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Matrix",
+      "item": [
+        {
+          "name": "Sources to targets matrix",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sources\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 }\n  ],\n  \"targets\": [\n    { \"lat\": 45.7640, \"lon\": 4.8357 },\n    { \"lat\": 43.2965, \"lon\": 5.3698 }\n  ],\n  \"costing\": \"auto\"\n}"
+            },
+            "url": {
+              "raw": "{{apiBaseUrl}}/routing/sources_to_targets?access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["routing", "sources_to_targets"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Isochrone",
+      "item": [
+        {
+          "name": "Compute isochrone",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    { \"lat\": 48.8566, \"lon\": 2.3522 }\n  ],\n  \"costing\": \"pedestrian\",\n  \"contours\": [\n    { \"time\": 5, \"color\": \"ff0000\" },\n    { \"time\": 10, \"color\": \"00ff00\" }\n  ],\n  \"polygons\": true\n}"
+            },
+            "url": {
+              "raw": "{{apiBaseUrl}}/routing/isochrone?access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["routing", "isochrone"],
+              "query": [
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Static Maps",
+      "item": [
+        {
+          "name": "Render static map",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{apiBaseUrl}}/static?layer=jawg-sunny&center=48.856,2.351&zoom=12&size=400x300&format=png&access-token={{accessToken}}",
+              "host": ["{{apiBaseUrl}}"],
+              "path": ["static"],
+              "query": [
+                { "key": "layer", "value": "jawg-sunny" },
+                { "key": "center", "value": "48.856,2.351" },
+                { "key": "zoom", "value": "12" },
+                { "key": "size", "value": "400x300" },
+                { "key": "format", "value": "png" },
+                { "key": "access-token", "value": "{{accessToken}}" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

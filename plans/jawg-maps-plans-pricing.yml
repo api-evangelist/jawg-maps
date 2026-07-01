@@ -1,0 +1,151 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Jawg Maps
+providerId: jawg-maps
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Maps
+- Geospatial
+- Tiles
+- Geocoding
+- Routing
+- Location
+- Plans
+description: >-
+  Jawg is sold on request-based monthly plans. A free tier covers evaluation
+  and small projects, paid Starter and Business plans raise the included
+  request allowance and unlock higher rate limits and support, and an
+  Enterprise / custom plan covers high volume, SLAs, and on-premises or
+  dedicated deployments. A single monthly request budget is shared across
+  Maps (tiles), Places, Routing, Matrix, Isochrone, and Static Maps, so the
+  plan is metered by API requests rather than per surface.
+notes: >-
+  Representative tier structure; Jawg publishes current included-request
+  allowances and per-tier prices on its pricing page. Verify exact quotas and
+  prices at reconciliation.
+sources:
+- https://www.jawg.io/en/pricing/
+- https://www.jawg.io/docs/
+plans:
+- id: jawg-free
+  name: Free
+  type: free
+  description: >-
+    Free tier for evaluation and small projects, with a capped monthly request
+    allowance across all Jawg APIs and community support.
+  entries:
+  - label: Included Requests
+    name: included_requests
+    type: request
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free up to the monthly free allowance
+    userMultiplied: false
+  elements:
+  - name: Map Tiles & Styles
+  - name: Places / Geocoding
+  - name: Routing
+  - name: Matrix
+  - name: Isochrone
+  - name: Static Maps
+- id: jawg-starter
+  name: Starter
+  type: paid
+  description: >-
+    Entry paid plan with a larger included monthly request allowance, higher
+    rate limits, and standard support.
+  entries:
+  - label: Included Requests
+    name: included_requests
+    type: request
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: monthly subscription with an included request allowance
+    userMultiplied: false
+  - label: Overage Requests
+    name: overage_requests
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: metered per 1,000 requests above the included allowance
+    userMultiplied: false
+  elements:
+  - name: Map Tiles & Styles
+  - name: Places / Geocoding
+  - name: Routing
+  - name: Matrix
+  - name: Isochrone
+  - name: Static Maps
+- id: jawg-business
+  name: Business
+  type: paid
+  description: >-
+    Higher-volume paid plan with a large included monthly request allowance,
+    elevated rate limits, and priority support.
+  entries:
+  - label: Included Requests
+    name: included_requests
+    type: request
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: monthly subscription with a large included request allowance
+    userMultiplied: false
+  - label: Overage Requests
+    name: overage_requests
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: metered per 1,000 requests above the included allowance
+    userMultiplied: false
+  elements:
+  - name: Map Tiles & Styles
+  - name: Places / Geocoding
+  - name: Routing
+  - name: Matrix
+  - name: Isochrone
+  - name: Static Maps
+  - name: Priority Support
+- id: jawg-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom high-volume plan with negotiated request volumes, SLAs, dedicated
+    and on-premises deployment options, and dedicated support. Contact Jawg
+    sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Request Volumes
+  - name: SLA
+  - name: Dedicated / On-Premises Deployment
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
