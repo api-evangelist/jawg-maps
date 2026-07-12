@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.jawg.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  9 20:25:27 2026 GMT
+  hsts: false
+- host: tile.jawg.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  7 11:06:09 2026 GMT
+  hsts: null
+- host: api.jawg.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  7 11:06:09 2026 GMT
+  hsts: null
+domains:
+- domain: jawg.io
+  dnssec: false
+  caa:
+  - 0 issuewild "letsencrypt.org;validationmethods=dns-01"
+  - 0 iodef "mailto:tls-abuse@jawg.io"
+  - 0 issue "pki.goog; cansignhttpexchanges=yes"
+  - 0 issue "letsencrypt.org"
+  spf: false
+  dmarc: true
+  dmarc_policy: quarantine

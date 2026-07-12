@@ -159,6 +159,10 @@ apis:
     size, or from an auto-fit set of features, with optional markers and paths - for
     display on web and mobile without JavaScript.
 common:
+- type: DomainSecurity
+  url: security/jawg-maps-domain-security.yml
+- type: Authentication
+  url: authentication/jawg-maps-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/jawg
 - type: LinkedIn
@@ -173,6 +177,8 @@ common:
   url: rate-limits/jawg-maps-rate-limits.yml
 - type: FinOps
   url: finops/jawg-maps-finops.yml
+- url: https://blog.jawg.io/feed/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

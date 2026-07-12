@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/jawg-maps-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - query
+schemes:
+- name: accessToken
+  type: apiKey
+  in: query
+  parameter: access-token
+  description: Jawg access token, obtained from the Jawg App account.
+  sources:
+  - openapi/jawg-maps-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Jawg access token supplied as a Bearer token on api.jawg.io surfaces.
+  sources:
+  - openapi/jawg-maps-openapi.yml
