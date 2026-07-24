@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Jawg Maps Isochrone Styles API
+  description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
+  termsOfService: https://www.jawg.io/en/terms/
+  contact:
+    name: Jawg Support
+    url: https://www.jawg.io/en/contact/
+  version: '1.0'
+servers:
+- url: https://tile.jawg.io
+  description: Map tiles, styles, and TileJSON
+- url: https://api.jawg.io
+  description: Places, routing, matrix, isochrone, and static maps
+security:
+- accessToken: []
+tags:
+- name: Styles
+paths:
+  /styles/{styleId}.json:
+    get:
+      operationId: getStyleJson
+      tags:
+      - Styles
+      summary: Get the style JSON document for a hosted style.
+      description: Returns the Mapbox GL style specification JSON for the hosted style, used to render vector maps in the browser.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - $ref: '#/components/parameters/StyleId'
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      - $ref: '#/components/parameters/Lang'
+      - name: extrude
+        in: query
+        description: Whether to enable 3D building extrusion in the returned style.
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/Worldview'
+      responses:
+        '200':
+          description: A Mapbox GL style JSON document.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /styles/{styleId}/tilejson.json:
+    get:
+      operationId: getTileJson
+      tags:
+      - Styles
+      summary: Get the TileJSON metadata for a hosted style.
+      description: Returns a TileJSON 2.x metadata document describing the tileset.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - $ref: '#/components/parameters/StyleId'
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      responses:
+        '200':
+          description: A TileJSON metadata document.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Worldview:
+      name: worldview
+      in: query
+      description: Worldview used to render disputed borders.
+      schema:
+        type: string
+    StyleId:
+      name: styleId
+      in: path
+      required: true
+      description: The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID).
+      schema:
+        type: string
+      example: jawg-streets
+    Lang:
+      name: lang
+      in: query
+      description: Preferred label language (ISO 639-1).
+      schema:
+        type: string
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: query
+      name: access-token
+      description: Jawg access token, obtained from the Jawg App account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Jawg access token supplied as a Bearer token on api.jawg.io surfaces.

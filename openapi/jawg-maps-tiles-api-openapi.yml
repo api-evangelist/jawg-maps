@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: Jawg Maps Isochrone Tiles API
+  description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
+  termsOfService: https://www.jawg.io/en/terms/
+  contact:
+    name: Jawg Support
+    url: https://www.jawg.io/en/contact/
+  version: '1.0'
+servers:
+- url: https://tile.jawg.io
+  description: Map tiles, styles, and TileJSON
+- url: https://api.jawg.io
+  description: Places, routing, matrix, isochrone, and static maps
+security:
+- accessToken: []
+tags:
+- name: Tiles
+paths:
+  /{styleId}/{z}/{x}/{y}.png:
+    get:
+      operationId: getRasterTile
+      tags:
+      - Tiles
+      summary: Get a raster (PNG) map tile.
+      description: Returns a raster map tile in the XYZ slippy-map scheme for the given hosted style. Append `@2x` before `.png` for retina tiles.
+      servers:
+      - url: https://tile.jawg.io
+      parameters:
+      - $ref: '#/components/parameters/StyleId'
+      - $ref: '#/components/parameters/Z'
+      - $ref: '#/components/parameters/X'
+      - $ref: '#/components/parameters/Y'
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      - $ref: '#/components/parameters/Lang'
+      - $ref: '#/components/parameters/Worldview'
+      responses:
+        '200':
+          description: A raster map tile.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{styleId}/{z}/{x}/{y}.pbf:
+    get:
+      operationId: getVectorTile
+      tags:
+      - Tiles
+      summary: Get a vector (Mapbox Vector Tile) map tile.
+      description: Returns a gzip-encoded Mapbox Vector Tile for the given hosted style.
+      servers:
+      - url: https://tile.jawg.io
+      parameters:
+      - $ref: '#/components/parameters/StyleId'
+      - $ref: '#/components/parameters/Z'
+      - $ref: '#/components/parameters/X'
+      - $ref: '#/components/parameters/Y'
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      responses:
+        '200':
+          description: A vector map tile.
+          content:
+            application/x-protobuf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    Y:
+      name: y
+      in: path
+      required: true
+      description: Tile row.
+      schema:
+        type: integer
+    Z:
+      name: z
+      in: path
+      required: true
+      description: Tile zoom level.
+      schema:
+        type: integer
+    Worldview:
+      name: worldview
+      in: query
+      description: Worldview used to render disputed borders.
+      schema:
+        type: string
+    StyleId:
+      name: styleId
+      in: path
+      required: true
+      description: The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID).
+      schema:
+        type: string
+      example: jawg-streets
+    Lang:
+      name: lang
+      in: query
+      description: Preferred label language (ISO 639-1).
+      schema:
+        type: string
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+    X:
+      name: x
+      in: path
+      required: true
+      description: Tile column.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: query
+      name: access-token
+      description: Jawg access token, obtained from the Jawg App account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Jawg access token supplied as a Bearer token on api.jawg.io surfaces.

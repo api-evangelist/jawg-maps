@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: Jawg Maps Isochrone Routing API
+  description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
+  termsOfService: https://www.jawg.io/en/terms/
+  contact:
+    name: Jawg Support
+    url: https://www.jawg.io/en/contact/
+  version: '1.0'
+servers:
+- url: https://tile.jawg.io
+  description: Map tiles, styles, and TileJSON
+- url: https://api.jawg.io
+  description: Places, routing, matrix, isochrone, and static maps
+security:
+- accessToken: []
+tags:
+- name: Routing
+paths:
+  /routing/route:
+    post:
+      operationId: computeRoute
+      tags:
+      - Routing
+      summary: Compute a route between two or more locations.
+      description: Valhalla turn-by-turn routing. Computes the best route across the supplied locations for the given costing model (auto, bicycle, pedestrian, ...).
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+      responses:
+        '200':
+          description: A Valhalla route (trip) response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /routing/optimized_route:
+    post:
+      operationId: computeOptimizedRoute
+      tags:
+      - Routing
+      summary: Compute an optimized (traveling-salesman) route.
+      description: Valhalla optimized_route service that reorders the intermediate locations to minimize total cost between the fixed start and end.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+      responses:
+        '200':
+          description: An optimized Valhalla route response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    RouteRequest:
+      type: object
+      required:
+      - locations
+      - costing
+      properties:
+        locations:
+          type: array
+          minItems: 2
+          items:
+            $ref: '#/components/schemas/Location'
+        costing:
+          type: string
+          enum:
+          - auto
+          - bicycle
+          - pedestrian
+          - bus
+          - truck
+          - motor_scooter
+          example: auto
+        costing_options:
+          type: object
+          description: Per-mode costing options.
+        directions_options:
+          type: object
+          properties:
+            units:
+              type: string
+              enum:
+              - kilometers
+              - miles
+    Location:
+      type: object
+      required:
+      - lat
+      - lon
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+        type:
+          type: string
+          enum:
+          - break
+          - through
+          - via
+          - break_through
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: query
+      name: access-token
+      description: Jawg access token, obtained from the Jawg App account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Jawg access token supplied as a Bearer token on api.jawg.io surfaces.

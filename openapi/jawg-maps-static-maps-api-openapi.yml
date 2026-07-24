@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Jawg Maps Isochrone Static Maps API
+  description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
+  termsOfService: https://www.jawg.io/en/terms/
+  contact:
+    name: Jawg Support
+    url: https://www.jawg.io/en/contact/
+  version: '1.0'
+servers:
+- url: https://tile.jawg.io
+  description: Map tiles, styles, and TileJSON
+- url: https://api.jawg.io
+  description: Places, routing, matrix, isochrone, and static maps
+security:
+- accessToken: []
+tags:
+- name: Static Maps
+paths:
+  /static:
+    get:
+      operationId: getStaticMap
+      tags:
+      - Static Maps
+      summary: Render a standalone static map image.
+      description: Renders a static map image from a center, zoom, and size (or from an auto-fit set of features), optionally decorated with markers and paths.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - name: layer
+        in: query
+        description: The hosted style / layer to render (e.g. jawg-sunny).
+        schema:
+          type: string
+        example: jawg-sunny
+      - name: center
+        in: query
+        description: Map center as "lat,lon".
+        schema:
+          type: string
+        example: 48.856,2.351
+      - name: zoom
+        in: query
+        schema:
+          type: integer
+        example: 12
+      - name: size
+        in: query
+        description: Image size as "widthxheight" in pixels.
+        schema:
+          type: string
+        example: 400x300
+      - name: format
+        in: query
+        schema:
+          type: string
+          enum:
+          - png
+          - jpg
+          default: png
+      - name: markers
+        in: query
+        description: Marker overlays to render on the image.
+        schema:
+          type: string
+      - name: paths
+        in: query
+        description: Path (polyline/polygon) overlays to render on the image.
+        schema:
+          type: string
+      - name: bearing
+        in: query
+        schema:
+          type: number
+          format: double
+      - name: pitch
+        in: query
+        schema:
+          type: number
+          format: double
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      responses:
+        '200':
+          description: A rendered static map image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: query
+      name: access-token
+      description: Jawg access token, obtained from the Jawg App account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Jawg access token supplied as a Bearer token on api.jawg.io surfaces.

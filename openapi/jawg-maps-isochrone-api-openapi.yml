@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+  title: Jawg Maps Isochrone API
+  description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
+  termsOfService: https://www.jawg.io/en/terms/
+  contact:
+    name: Jawg Support
+    url: https://www.jawg.io/en/contact/
+  version: '1.0'
+servers:
+- url: https://tile.jawg.io
+  description: Map tiles, styles, and TileJSON
+- url: https://api.jawg.io
+  description: Places, routing, matrix, isochrone, and static maps
+security:
+- accessToken: []
+tags:
+- name: Isochrone
+paths:
+  /routing/isochrone:
+    post:
+      operationId: computeIsochrone
+      tags:
+      - Isochrone
+      summary: Compute isochrone / isodistance contours.
+      description: Valhalla isochrone service returning GeoJSON contours of the area reachable within the requested time or distance intervals.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IsochroneRequest'
+      responses:
+        '200':
+          description: A GeoJSON FeatureCollection of isochrone contours.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    IsochroneRequest:
+      type: object
+      required:
+      - locations
+      - costing
+      - contours
+      properties:
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+        costing:
+          type: string
+          enum:
+          - auto
+          - bicycle
+          - pedestrian
+          example: pedestrian
+        contours:
+          type: array
+          items:
+            type: object
+            properties:
+              time:
+                type: number
+                description: Contour time in minutes.
+              distance:
+                type: number
+                description: Contour distance in kilometers.
+              color:
+                type: string
+        polygons:
+          type: boolean
+          default: false
+    Location:
+      type: object
+      required:
+      - lat
+      - lon
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+        type:
+          type: string
+          enum:
+          - break
+          - through
+          - via
+          - break_through
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: query
+      name: access-token
+      description: Jawg access token, obtained from the Jawg App account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Jawg access token supplied as a Bearer token on api.jawg.io surfaces.

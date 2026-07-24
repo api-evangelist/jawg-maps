@@ -1,0 +1,275 @@
+openapi: 3.0.3
+info:
+  title: Jawg Maps Isochrone Places API
+  description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
+  termsOfService: https://www.jawg.io/en/terms/
+  contact:
+    name: Jawg Support
+    url: https://www.jawg.io/en/contact/
+  version: '1.0'
+servers:
+- url: https://tile.jawg.io
+  description: Map tiles, styles, and TileJSON
+- url: https://api.jawg.io
+  description: Places, routing, matrix, isochrone, and static maps
+security:
+- accessToken: []
+tags:
+- name: Places
+paths:
+  /places/v1/search:
+    get:
+      operationId: geocodeSearch
+      tags:
+      - Places
+      summary: Forward geocoding search.
+      description: Searches for places, addresses, and points of interest matching a free text query and returns ranked results as a GeoJSON FeatureCollection.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - name: text
+        in: query
+        required: true
+        description: The free-text query to geocode.
+        schema:
+          type: string
+        example: 10 rue de la paix, Paris
+      - $ref: '#/components/parameters/Size'
+      - name: layers
+        in: query
+        description: Comma-separated feature layers to restrict the search to (e.g. address, venue, locality).
+        schema:
+          type: string
+      - name: sources
+        in: query
+        description: Comma-separated data sources to restrict the search to (e.g. osm, oa, wof, gn).
+        schema:
+          type: string
+      - name: boundary.country
+        in: query
+        description: ISO 3166-1 alpha-2/alpha-3 country code to restrict results.
+        schema:
+          type: string
+      - name: focus.point.lat
+        in: query
+        description: Latitude used to bias results toward a location.
+        schema:
+          type: number
+          format: double
+      - name: focus.point.lon
+        in: query
+        description: Longitude used to bias results toward a location.
+        schema:
+          type: number
+          format: double
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      responses:
+        '200':
+          description: A GeoJSON FeatureCollection of geocoding results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /places/v1/autocomplete:
+    get:
+      operationId: geocodeAutocomplete
+      tags:
+      - Places
+      summary: Autocomplete geocoding.
+      description: Returns type-ahead suggestions for a partial text query.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - name: text
+        in: query
+        required: true
+        description: The partial text to complete.
+        schema:
+          type: string
+        example: 10 rue de la pa
+      - name: focus.point.lat
+        in: query
+        schema:
+          type: number
+          format: double
+      - name: focus.point.lon
+        in: query
+        schema:
+          type: number
+          format: double
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      responses:
+        '200':
+          description: A GeoJSON FeatureCollection of autocomplete suggestions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /places/v1/reverse:
+    get:
+      operationId: geocodeReverse
+      tags:
+      - Places
+      summary: Reverse geocoding.
+      description: Returns the places nearest to a latitude/longitude coordinate.
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - name: point.lat
+        in: query
+        required: true
+        description: Latitude to reverse-geocode.
+        schema:
+          type: number
+          format: double
+        example: 48.8534
+      - name: point.lon
+        in: query
+        required: true
+        description: Longitude to reverse-geocode.
+        schema:
+          type: number
+          format: double
+        example: 2.3488
+      - $ref: '#/components/parameters/Size'
+      - name: layers
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      responses:
+        '200':
+          description: A GeoJSON FeatureCollection of reverse-geocoding results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /places/v1/place/{id}:
+    get:
+      operationId: getPlaceDetails
+      tags:
+      - Places
+      summary: Get details for a place by its global identifier.
+      description: Returns the full record for a place identified by its gid (source:layer:id).
+      servers:
+      - url: https://api.jawg.io
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The global identifier of the place (e.g. openstreetmap:venue:node/12345).
+        schema:
+          type: string
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      responses:
+        '200':
+          description: A GeoJSON FeatureCollection containing the requested place.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    GeocodingResponse:
+      type: object
+      description: A GeoJSON FeatureCollection returned by the Places API.
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        geocoding:
+          type: object
+          description: Query metadata (version, engine, query echo, timestamp).
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeocodingFeature'
+    GeocodingFeature:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Feature
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: double
+        properties:
+          type: object
+          properties:
+            gid:
+              type: string
+            layer:
+              type: string
+            source:
+              type: string
+            name:
+              type: string
+            label:
+              type: string
+            confidence:
+              type: number
+              format: double
+            country:
+              type: string
+            region:
+              type: string
+            locality:
+              type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Size:
+      name: size
+      in: query
+      description: Maximum number of results to return.
+      schema:
+        type: integer
+        default: 10
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+  securitySchemes:
+    accessToken:
+      type: apiKey
+      in: query
+      name: access-token
+      description: Jawg access token, obtained from the Jawg App account.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Jawg access token supplied as a Bearer token on api.jawg.io surfaces.
