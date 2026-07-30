@@ -7,7 +7,20 @@ description: Jawg is a French location platform delivering customizable vector a
   isochrones, distance matrices, and static maps. All surfaces are authenticated
   with a Jawg access token passed as an access-token query parameter (or header)
   and are served from tile.jawg.io and api.jawg.io.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/jawg-maps.png
 tags:
 - Maps
 - Geospatial
@@ -19,145 +32,202 @@ created: '2026-07-01'
 modified: '2026-07-01'
 specificationVersion: '0.19'
 apis:
-- aid: jawg-maps:jawg-maps-map-tiles-styles-api
-  name: Jawg Map Tiles & Styles API
-  tags:
-  - Tiles
-  - Vector Tiles
-  - Raster Tiles
-  - Styles
-  - TileJSON
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: jawg-maps:jawg-maps-isochrone-api
+  name: Jawg Maps Isochrone API
+  description: The Isochrone API from Jawg Maps — 1 operation(s) for isochrone.
   humanURL: https://www.jawg.io/docs/apidocs/maps/
   baseURL: https://tile.jawg.io
-  properties:
-  - url: https://www.jawg.io/docs/apidocs/maps/
-    type: Documentation
-  - url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
-    type: APIReference
-  - url: openapi/jawg-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/jawg-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jawg-maps.opencollection.json
-    type: OpenCollection
-  description: Serves customizable slippy-map tiles in the XYZ scheme for both vector
-    (Mapbox Vector Tile) and raster (PNG) formats using a hosted style ID, plus the
-    style JSON and TileJSON metadata documents. Supports retina @2x tiles, language
-    and worldview parameters, and a WMTS entrypoint.
-- aid: jawg-maps:jawg-maps-places-geocoding-api
-  name: Jawg Places / Geocoding API
-  tags:
-  - Geocoding
-  - Places
-  - Search
-  - Autocomplete
-  - Reverse Geocoding
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.jawg.io/docs/apidocs/places/
-  baseURL: https://api.jawg.io/places/v1
-  properties:
-  - url: https://www.jawg.io/docs/apidocs/places/
-    type: Documentation
-  - url: https://www.jawg.io/docs/apidocs/places/search/
-    type: APIReference
-  - url: openapi/jawg-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/jawg-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jawg-maps.opencollection.json
-    type: OpenCollection
-  description: Forward geocoding, autocomplete, reverse geocoding, and place-detail
-    lookup returning GeoJSON features. Results can be biased and filtered by point,
-    bounding box, layers, sources, and country.
-- aid: jawg-maps:jawg-maps-routing-api
-  name: Jawg Routing API
-  tags:
-  - Routing
-  - Directions
-  - Valhalla
-  - Turn by Turn
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.jawg.io/docs/apidocs/routing/
-  baseURL: https://api.jawg.io/routing
-  properties:
-  - url: https://www.jawg.io/docs/apidocs/routing/
-    type: Documentation
-  - url: https://www.jawg.io/docs/apidocs/routing/osrm/
-    type: APIReference
-  - url: openapi/jawg-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/jawg-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jawg-maps.opencollection.json
-    type: OpenCollection
-  description: Valhalla-based turn-by-turn routing computing the shortest route or
-    distance between locations across auto, bicycle, and pedestrian costing models,
-    plus an optimized_route (traveling-salesman) endpoint. An OSRM-compatible routing
-    surface is also available.
-- aid: jawg-maps:jawg-maps-matrix-api
-  name: Jawg Matrix API
-  tags:
-  - Matrix
-  - Distance Matrix
-  - Valhalla
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.jawg.io/docs/apidocs/routing/
-  baseURL: https://api.jawg.io/routing
-  properties:
-  - url: https://www.jawg.io/docs/apidocs/routing/
-    type: Documentation
-  - url: openapi/jawg-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/jawg-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jawg-maps.opencollection.json
-    type: OpenCollection
-  description: Valhalla sources_to_targets time-distance matrix service computing
-    travel time and distance between every source and every target location for a
-    given costing model.
-- aid: jawg-maps:jawg-maps-isochrone-api
-  name: Jawg Isochrone API
   tags:
   - Isochrone
-  - Reachability
-  - Valhalla
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.jawg.io/docs/apidocs/routing/
-  baseURL: https://api.jawg.io/routing
   properties:
-  - url: https://www.jawg.io/docs/apidocs/routing/
-    type: Documentation
-  - url: openapi/jawg-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/jawg-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jawg-maps.opencollection.json
-    type: OpenCollection
-  description: Valhalla isochrone service computing areas reachable within specified
-    time or distance intervals from one or more locations, returned as GeoJSON
-    polygon or line contours.
+  - type: OpenAPI
+    url: openapi/jawg-maps-isochrone-api-openapi.yml
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+  - type: PostmanCollection
+    url: collections/jawg-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/jawg-maps.opencollection.json
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/places/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/places/search/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/routing/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/routing/osrm/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/static-maps/
+- aid: jawg-maps:jawg-maps-matrix-api
+  name: Jawg Maps Matrix API
+  description: The Matrix API from Jawg Maps — 1 operation(s) for matrix.
+  humanURL: https://www.jawg.io/docs/apidocs/maps/
+  baseURL: https://tile.jawg.io
+  tags:
+  - Matrix
+  properties:
+  - type: OpenAPI
+    url: openapi/jawg-maps-matrix-api-openapi.yml
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+  - type: PostmanCollection
+    url: collections/jawg-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/jawg-maps.opencollection.json
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/places/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/places/search/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/routing/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/routing/osrm/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/static-maps/
+- aid: jawg-maps:jawg-maps-places-api
+  name: Jawg Maps Places API
+  description: The Places API from Jawg Maps — 4 operation(s) for places.
+  humanURL: https://www.jawg.io/docs/apidocs/maps/
+  baseURL: https://tile.jawg.io
+  tags:
+  - Places
+  properties:
+  - type: OpenAPI
+    url: openapi/jawg-maps-places-api-openapi.yml
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+  - type: PostmanCollection
+    url: collections/jawg-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/jawg-maps.opencollection.json
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/places/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/places/search/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/routing/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/routing/osrm/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/static-maps/
+- aid: jawg-maps:jawg-maps-routing-api
+  name: Jawg Maps Routing API
+  description: The Routing API from Jawg Maps — 2 operation(s) for routing.
+  humanURL: https://www.jawg.io/docs/apidocs/maps/
+  baseURL: https://tile.jawg.io
+  tags:
+  - Routing
+  properties:
+  - type: OpenAPI
+    url: openapi/jawg-maps-routing-api-openapi.yml
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+  - type: PostmanCollection
+    url: collections/jawg-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/jawg-maps.opencollection.json
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/places/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/places/search/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/routing/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/routing/osrm/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/static-maps/
 - aid: jawg-maps:jawg-maps-static-maps-api
-  name: Jawg Static Maps API
+  name: Jawg Maps Static Maps API
+  description: The Static Maps API from Jawg Maps — 1 operation(s) for static maps.
+  humanURL: https://www.jawg.io/docs/apidocs/maps/
+  baseURL: https://tile.jawg.io
   tags:
   - Static Maps
-  - Images
-  - Markers
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.jawg.io/docs/apidocs/maps/static-maps/
-  baseURL: https://api.jawg.io
   properties:
-  - url: https://www.jawg.io/docs/apidocs/maps/static-maps/
-    type: Documentation
-  - url: openapi/jawg-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/jawg-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jawg-maps.opencollection.json
-    type: OpenCollection
-  description: Renders a standalone map image (PNG/JPEG) from a center, zoom, and
-    size, or from an auto-fit set of features, with optional markers and paths - for
-    display on web and mobile without JavaScript.
+  - type: OpenAPI
+    url: openapi/jawg-maps-static-maps-api-openapi.yml
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+  - type: PostmanCollection
+    url: collections/jawg-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/jawg-maps.opencollection.json
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/places/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/places/search/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/routing/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/routing/osrm/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/static-maps/
+- aid: jawg-maps:jawg-maps-styles-api
+  name: Jawg Maps Styles API
+  description: The Styles API from Jawg Maps — 2 operation(s) for styles.
+  humanURL: https://www.jawg.io/docs/apidocs/maps/
+  baseURL: https://tile.jawg.io
+  tags:
+  - Styles
+  properties:
+  - type: OpenAPI
+    url: openapi/jawg-maps-styles-api-openapi.yml
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+  - type: PostmanCollection
+    url: collections/jawg-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/jawg-maps.opencollection.json
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/places/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/places/search/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/routing/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/routing/osrm/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/static-maps/
+- aid: jawg-maps:jawg-maps-tiles-api
+  name: Jawg Maps Tiles API
+  description: The Tiles API from Jawg Maps — 2 operation(s) for tiles.
+  humanURL: https://www.jawg.io/docs/apidocs/maps/
+  baseURL: https://tile.jawg.io
+  tags:
+  - Tiles
+  properties:
+  - type: OpenAPI
+    url: openapi/jawg-maps-tiles-api-openapi.yml
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/maps/dynamic-maps/
+  - type: PostmanCollection
+    url: collections/jawg-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/jawg-maps.opencollection.json
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/places/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/places/search/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/routing/
+  - type: APIReference
+    url: https://www.jawg.io/docs/apidocs/routing/osrm/
+  - type: Documentation
+    url: https://www.jawg.io/docs/apidocs/maps/static-maps/
 common:
 - type: AgenticAccess
   url: agentic-access/jawg-maps-agentic-access.yml
