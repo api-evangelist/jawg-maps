@@ -1,0 +1,26 @@
+{
+  "provider": "jawg-maps",
+  "sources": [
+    "jawg-maps-isochrone-api-openapi.yml",
+    "jawg-maps-matrix-api-openapi.yml",
+    "jawg-maps-places-api-openapi.yml",
+    "jawg-maps-routing-api-openapi.yml",
+    "jawg-maps-static-maps-api-openapi.yml",
+    "jawg-maps-styles-api-openapi.yml",
+    "jawg-maps-tiles-api-openapi.yml"
+  ],
+  "outputs": [
+    "jawg-maps-isochrone-api-openapi.yml",
+    "jawg-maps-matrix-api-openapi.yml",
+    "jawg-maps-places-api-openapi.yml",
+    "jawg-maps-routing-api-openapi.yml",
+    "jawg-maps-static-maps-api-openapi.yml",
+    "jawg-maps-styles-api-openapi.yml",
+    "jawg-maps-tiles-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
