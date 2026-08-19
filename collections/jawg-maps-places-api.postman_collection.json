@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "85b85456-675b-41ad-bef1-74e79514cad3",
+      "name": "Places",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b243da3c-2854-4052-afaa-a4db0cea5639",
+          "name": "Forward geocoding search.",
+          "request": {
+            "name": "Forward geocoding search.",
+            "description": {
+              "content": "Searches for places, addresses, and points of interest matching a free text query and returns ranked results as a GeoJSON FeatureCollection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "places",
+                "v1",
+                "search"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) The free-text query to geocode."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Maximum number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>",
+                  "description": "Comma-separated feature layers to restrict the search to (e.g. address, venue, locality)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>",
+                  "description": "Comma-separated data sources to restrict the search to (e.g. osm, oa, wof, gn)."
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2/alpha-3 country code to restrict results."
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lat",
+                  "value": "<double>",
+                  "description": "Latitude used to bias results toward a location."
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lon",
+                  "value": "<double>",
+                  "description": "Longitude used to bias results toward a location."
+                },
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b3aced6-c0ed-4421-ae53-0181eef5efc3",
+              "name": "A GeoJSON FeatureCollection of geocoding results.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "search"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "10 rue de la paix, Paris"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"geocoding\": {},\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          9304.653073841006,\n          7163.875118190559\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 5610.03490673426,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          7830.483286999056,\n          3227.6951834861256\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 4734.595732102585,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd2a63c0-3781-41de-8356-40dcb365af16",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "search"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "10 rue de la paix, Paris"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 3305,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "935b7303-d253-4836-a9d5-a8ead0ffdb22",
+          "name": "Autocomplete geocoding.",
+          "request": {
+            "name": "Autocomplete geocoding.",
+            "description": {
+              "content": "Returns type-ahead suggestions for a partial text query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "places",
+                "v1",
+                "autocomplete"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) The partial text to complete."
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lat",
+                  "value": "<double>"
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lon",
+                  "value": "<double>"
+                },
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "931d3812-2d22-42ae-abe5-2f9bf454cade",
+              "name": "A GeoJSON FeatureCollection of autocomplete suggestions.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "10 rue de la pa"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"geocoding\": {},\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          2838.3949028514244,\n          2672.193048381898\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 6812.705421748598,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          9487.856602136677,\n          6849.731466392681\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 3800.8748392913503,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb56722e-a9dd-4e1a-bda5-f218e69b5d74",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "10 rue de la pa"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 3305,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff892e39-fad9-4168-85b4-dd4150c4fd78",
+          "name": "Reverse geocoding.",
+          "request": {
+            "name": "Reverse geocoding.",
+            "description": {
+              "content": "Returns the places nearest to a latitude/longitude coordinate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "places",
+                "v1",
+                "reverse"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "point.lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude to reverse-geocode."
+                },
+                {
+                  "disabled": false,
+                  "key": "point.lon",
+                  "value": "<double>",
+                  "description": "(Required) Longitude to reverse-geocode."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Maximum number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e262c3a6-f3de-4783-8d5e-21de7e3dcfee",
+              "name": "A GeoJSON FeatureCollection of reverse-geocoding results.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "reverse"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "point.lat",
+                      "value": "48.8534"
+                    },
+                    {
+                      "key": "point.lon",
+                      "value": "2.3488"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"geocoding\": {},\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          2838.3949028514244,\n          2672.193048381898\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 6812.705421748598,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          9487.856602136677,\n          6849.731466392681\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 3800.8748392913503,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f007b7f-4350-4027-b333-fbff174c13f9",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "reverse"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "point.lat",
+                      "value": "48.8534"
+                    },
+                    {
+                      "key": "point.lon",
+                      "value": "2.3488"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 3305,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbf58c2e-e9c8-4c5b-a3c4-6cb433ad06d6",
+          "name": "Get details for a place by its global identifier.",
+          "request": {
+            "name": "Get details for a place by its global identifier.",
+            "description": {
+              "content": "Returns the full record for a place identified by its gid (source:layer:id).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "places",
+                "v1",
+                "place",
+                ":id"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The global identifier of the place (e.g. openstreetmap:venue:node/12345)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e20b8b7-92bc-444a-a472-a7a9fa65b7a3",
+              "name": "A GeoJSON FeatureCollection containing the requested place.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "place",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The global identifier of the place (e.g. openstreetmap:venue:node/12345)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"geocoding\": {},\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          2838.3949028514244,\n          2672.193048381898\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 6812.705421748598,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          9487.856602136677,\n          6849.731466392681\n        ]\n      },\n      \"properties\": {\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"confidence\": 3800.8748392913503,\n        \"country\": \"string\",\n        \"region\": \"string\",\n        \"locality\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cef776d9-877e-4675-8167-a87cac6e7690",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "places",
+                    "v1",
+                    "place",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The global identifier of the place (e.g. openstreetmap:venue:node/12345)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 3305,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tile.jawg.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8bb4a192-80bf-4435-8218-5752df348e94",
+    "name": "Jawg Maps Isochrone Places API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).\n\nContact Support:\n Name: Jawg Support",
+      "type": "text/plain"
+    }
+  }
+}

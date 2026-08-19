@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jawg Maps Isochrone Tiles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a raster (PNG) map tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/:styleId/:z/:x/:y.png",
+            "params": [
+              {
+                "name": "styleId",
+                "value": "jawg-streets",
+                "type": "path",
+                "description": "The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID)."
+              },
+              {
+                "name": "z",
+                "value": "",
+                "type": "path",
+                "description": "Tile zoom level."
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "Tile column."
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "Tile row."
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Preferred label language (ISO 639-1)."
+              },
+              {
+                "name": "worldview",
+                "value": "",
+                "type": "query",
+                "description": "Worldview used to render disputed borders."
+              }
+            ]
+          },
+          "docs": "Returns a raster map tile in the XYZ slippy-map scheme for the given hosted style. Append `@2x` before `.png` for retina tiles."
+        },
+        {
+          "info": {
+            "name": "Get a vector (Mapbox Vector Tile) map tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/:styleId/:z/:x/:y.pbf",
+            "params": [
+              {
+                "name": "styleId",
+                "value": "jawg-streets",
+                "type": "path",
+                "description": "The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID)."
+              },
+              {
+                "name": "z",
+                "value": "",
+                "type": "path",
+                "description": "Tile zoom level."
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "Tile column."
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "Tile row."
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ]
+          },
+          "docs": "Returns a gzip-encoded Mapbox Vector Tile for the given hosted style."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,310 @@
+{
+  "item": [
+    {
+      "id": "3a72d4a6-5765-4364-b506-15783ecc3126",
+      "name": "Static Maps",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "769f87cb-9c3e-4522-9b35-d7549617fbe0",
+          "name": "Render a standalone static map image.",
+          "request": {
+            "name": "Render a standalone static map image.",
+            "description": {
+              "content": "Renders a static map image from a center, zoom, and size (or from an auto-fit set of features), optionally decorated with markers and paths.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "static"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "layer",
+                  "value": "<string>",
+                  "description": "The hosted style / layer to render (e.g. jawg-sunny)."
+                },
+                {
+                  "disabled": false,
+                  "key": "center",
+                  "value": "<string>",
+                  "description": "Map center as \"lat,lon\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "zoom",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Image size as \"widthxheight\" in pixels."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "png"
+                },
+                {
+                  "disabled": false,
+                  "key": "markers",
+                  "value": "<string>",
+                  "description": "Marker overlays to render on the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "paths",
+                  "value": "<string>",
+                  "description": "Path (polyline/polygon) overlays to render on the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "bearing",
+                  "value": "<double>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pitch",
+                  "value": "<double>"
+                },
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d721082-84ab-4c44-be32-e2d2e3cf6e3f",
+              "name": "A rendered static map image.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "static"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "layer",
+                      "value": "jawg-sunny"
+                    },
+                    {
+                      "key": "center",
+                      "value": "48.856,2.351"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "12"
+                    },
+                    {
+                      "key": "size",
+                      "value": "400x300"
+                    },
+                    {
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "markers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paths",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bearing",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "pitch",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/png"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25bf8ecf-c37f-48a5-8630-49c75aee869f",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "static"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "layer",
+                      "value": "jawg-sunny"
+                    },
+                    {
+                      "key": "center",
+                      "value": "48.856,2.351"
+                    },
+                    {
+                      "key": "zoom",
+                      "value": "12"
+                    },
+                    {
+                      "key": "size",
+                      "value": "400x300"
+                    },
+                    {
+                      "key": "format",
+                      "value": "png"
+                    },
+                    {
+                      "key": "markers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paths",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bearing",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "pitch",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9268,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tile.jawg.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c48d002b-515f-4f6b-9d14-335b9fc103b8",
+    "name": "Jawg Maps Isochrone Static Maps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).\n\nContact Support:\n Name: Jawg Support",
+      "type": "text/plain"
+    }
+  }
+}

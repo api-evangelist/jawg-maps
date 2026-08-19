@@ -1,0 +1,391 @@
+{
+  "item": [
+    {
+      "id": "2893d17d-a466-4c7f-8766-338f775edfca",
+      "name": "Routing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c344d24c-3d97-4c23-89bc-fdac03126561",
+          "name": "Compute a route between two or more locations.",
+          "request": {
+            "name": "Compute a route between two or more locations.",
+            "description": {
+              "content": "Valhalla turn-by-turn routing. Computes the best route across the supplied locations for the given costing model (auto, bicycle, pedestrian, ...).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "routing",
+                "route"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"costing\": \"<string>\",\n  \"costing_options\": \"<object>\",\n  \"directions_options\": {\n    \"units\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f3e340c-f42a-44dd-a880-ef40650c7c9e",
+              "name": "A Valhalla route (trip) response.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "routing",
+                    "route"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"costing\": \"auto\",\n  \"costing_options\": \"<object>\",\n  \"directions_options\": {\n    \"units\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48ae2450-3fe4-4a93-9929-14d5a1327a12",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "routing",
+                    "route"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"costing\": \"auto\",\n  \"costing_options\": \"<object>\",\n  \"directions_options\": {\n    \"units\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 3566,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e37a4c9e-fea4-44a8-95dc-bd8ef789f75f",
+          "name": "Compute an optimized (traveling-salesman) route.",
+          "request": {
+            "name": "Compute an optimized (traveling-salesman) route.",
+            "description": {
+              "content": "Valhalla optimized_route service that reorders the intermediate locations to minimize total cost between the fixed start and end.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "routing",
+                "optimized_route"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"costing\": \"<string>\",\n  \"costing_options\": \"<object>\",\n  \"directions_options\": {\n    \"units\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5349281-3ad2-4693-a581-7f0f24d38cdd",
+              "name": "An optimized Valhalla route response.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "routing",
+                    "optimized_route"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"costing\": \"auto\",\n  \"costing_options\": \"<object>\",\n  \"directions_options\": {\n    \"units\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8fdf568-e9e9-4369-b3ce-677d864e1e5a",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "routing",
+                    "optimized_route"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"costing\": \"auto\",\n  \"costing_options\": \"<object>\",\n  \"directions_options\": {\n    \"units\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 3566,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tile.jawg.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6c13a44c-d476-4bc7-8bfc-c46eca4afe61",
+    "name": "Jawg Maps Isochrone Routing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).\n\nContact Support:\n Name: Jawg Support",
+      "type": "text/plain"
+    }
+  }
+}

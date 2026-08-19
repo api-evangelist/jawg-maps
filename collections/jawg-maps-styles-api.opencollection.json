@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jawg Maps Isochrone Styles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Styles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the style JSON document for a hosted style.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/styles/:styleId.json",
+            "params": [
+              {
+                "name": "styleId",
+                "value": "jawg-streets",
+                "type": "path",
+                "description": "The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID)."
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Preferred label language (ISO 639-1)."
+              },
+              {
+                "name": "extrude",
+                "value": "",
+                "type": "query",
+                "description": "Whether to enable 3D building extrusion in the returned style."
+              },
+              {
+                "name": "worldview",
+                "value": "",
+                "type": "query",
+                "description": "Worldview used to render disputed borders."
+              }
+            ]
+          },
+          "docs": "Returns the Mapbox GL style specification JSON for the hosted style, used to render vector maps in the browser."
+        },
+        {
+          "info": {
+            "name": "Get the TileJSON metadata for a hosted style.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/styles/:styleId/tilejson.json",
+            "params": [
+              {
+                "name": "styleId",
+                "value": "jawg-streets",
+                "type": "path",
+                "description": "The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID)."
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ]
+          },
+          "docs": "Returns a TileJSON 2.x metadata document describing the tileset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

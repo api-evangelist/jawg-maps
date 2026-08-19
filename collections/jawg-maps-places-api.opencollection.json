@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jawg Maps Isochrone Places API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Places",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Forward geocoding search.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/places/v1/search",
+            "params": [
+              {
+                "name": "text",
+                "value": "10 rue de la paix, Paris",
+                "type": "query",
+                "description": "The free-text query to geocode."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated feature layers to restrict the search to (e.g. address, venue, locality)."
+              },
+              {
+                "name": "sources",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated data sources to restrict the search to (e.g. osm, oa, wof, gn)."
+              },
+              {
+                "name": "boundary.country",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2/alpha-3 country code to restrict results."
+              },
+              {
+                "name": "focus.point.lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude used to bias results toward a location."
+              },
+              {
+                "name": "focus.point.lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude used to bias results toward a location."
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ]
+          },
+          "docs": "Searches for places, addresses, and points of interest matching a free text query and returns ranked results as a GeoJSON FeatureCollection."
+        },
+        {
+          "info": {
+            "name": "Autocomplete geocoding.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/places/v1/autocomplete",
+            "params": [
+              {
+                "name": "text",
+                "value": "10 rue de la pa",
+                "type": "query",
+                "description": "The partial text to complete."
+              },
+              {
+                "name": "focus.point.lat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "focus.point.lon",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ]
+          },
+          "docs": "Returns type-ahead suggestions for a partial text query."
+        },
+        {
+          "info": {
+            "name": "Reverse geocoding.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/places/v1/reverse",
+            "params": [
+              {
+                "name": "point.lat",
+                "value": "48.8534",
+                "type": "query",
+                "description": "Latitude to reverse-geocode."
+              },
+              {
+                "name": "point.lon",
+                "value": "2.3488",
+                "type": "query",
+                "description": "Longitude to reverse-geocode."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ]
+          },
+          "docs": "Returns the places nearest to a latitude/longitude coordinate."
+        },
+        {
+          "info": {
+            "name": "Get details for a place by its global identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tile.jawg.io/places/v1/place/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The global identifier of the place (e.g. openstreetmap:venue:node/12345)."
+              },
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ]
+          },
+          "docs": "Returns the full record for a place identified by its gid (source:layer:id)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

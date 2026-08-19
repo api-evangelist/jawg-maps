@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jawg Maps Isochrone Routing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access-token",
+      "value": "{{access-token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Compute a route between two or more locations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://tile.jawg.io/routing/route",
+            "params": [
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Valhalla turn-by-turn routing. Computes the best route across the supplied locations for the given costing model (auto, bicycle, pedestrian, ...)."
+        },
+        {
+          "info": {
+            "name": "Compute an optimized (traveling-salesman) route.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://tile.jawg.io/routing/optimized_route",
+            "params": [
+              {
+                "name": "access-token",
+                "value": "",
+                "type": "query",
+                "description": "Your Jawg access token."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Valhalla optimized_route service that reorders the intermediate locations to minimize total cost between the fixed start and end."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

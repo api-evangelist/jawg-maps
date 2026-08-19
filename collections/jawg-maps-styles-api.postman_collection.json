@@ -1,0 +1,412 @@
+{
+  "item": [
+    {
+      "id": "e120f9e8-f286-4f3c-9f96-8ea2d3241b3e",
+      "name": "Styles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1d56daf-fceb-418a-99de-26ce0c775b61",
+          "name": "Get the style JSON document for a hosted style.",
+          "request": {
+            "name": "Get the style JSON document for a hosted style.",
+            "description": {
+              "content": "Returns the Mapbox GL style specification JSON for the hosted style, used to render vector maps in the browser.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "styles",
+                "{{styleId}}.json"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "Preferred label language (ISO 639-1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "extrude",
+                  "value": "<boolean>",
+                  "description": "Whether to enable 3D building extrusion in the returned style."
+                },
+                {
+                  "disabled": false,
+                  "key": "worldview",
+                  "value": "<string>",
+                  "description": "Worldview used to render disputed borders."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f81cbb8-10f3-4c88-8191-e0e7246a0670",
+              "name": "A Mapbox GL style JSON document.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "styles",
+                    "{{styleId}}.json"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "extrude",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "worldview",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2cdd84c-fe19-4d9d-a631-2c423960ea7d",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "styles",
+                    "{{styleId}}.json"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "extrude",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "worldview",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6668,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30d1a3be-897a-4bdd-8647-09f60f9dbca9",
+          "name": "Get the TileJSON metadata for a hosted style.",
+          "request": {
+            "name": "Get the TileJSON metadata for a hosted style.",
+            "description": {
+              "content": "Returns a TileJSON 2.x metadata document describing the tileset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "styles",
+                ":styleId",
+                "tilejson.json"
+              ],
+              "host": [
+                "api",
+                "jawg",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access-token",
+                  "value": "<string>",
+                  "description": "(Required) Your Jawg access token."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "styleId",
+                  "description": "(Required) The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0993440b-0c5a-48f7-a22c-7fcf2da9da59",
+              "name": "A TileJSON metadata document.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "styles",
+                    ":styleId",
+                    "tilejson.json"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "styleId",
+                      "description": "(Required) The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be60c969-aa6c-4188-8b6a-cb0ff57ff0ba",
+              "name": "The access token is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "styles",
+                    ":styleId",
+                    "tilejson.json"
+                  ],
+                  "host": [
+                    "api",
+                    "jawg",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "access-token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access-token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "styleId",
+                      "description": "(Required) The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6668,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tile.jawg.io",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "styleId"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "749a0af7-c4d4-438b-b223-94be029535e0",
+    "name": "Jawg Maps Isochrone Styles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).\n\nContact Support:\n Name: Jawg Support",
+      "type": "text/plain"
+    }
+  }
+}
