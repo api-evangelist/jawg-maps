@@ -7,6 +7,18 @@ description: Jawg is a French location platform delivering customizable vector a
   isochrones, distance matrices, and static maps. All surfaces are authenticated
   with a Jawg access token passed as an access-token query parameter (or header)
   and are served from tile.jawg.io and api.jawg.io.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
