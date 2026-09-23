@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Jawg Maps Isochrone API
   description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
@@ -22,7 +22,7 @@ paths:
       operationId: computeIsochrone
       tags:
       - Isochrone
-      summary: Compute isochrone / isodistance contours.
+      summary: Compute isochrone / isodistance contours
       description: Valhalla isochrone service returning GeoJSON contours of the area reachable within the requested time or distance intervals.
       servers:
       - url: https://api.jawg.io
@@ -44,13 +44,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: The access token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
   schemas:
     IsochroneRequest:
       type: object
@@ -86,6 +87,16 @@ components:
         polygons:
           type: boolean
           default: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     Location:
       type: object
       required:
@@ -105,24 +116,13 @@ components:
           - through
           - via
           - break_through
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-  parameters:
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessToken:
       type: apiKey

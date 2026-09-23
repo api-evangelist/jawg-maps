@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Jawg Maps Isochrone Places API
+  title: Jawg Maps Places API
   description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
   termsOfService: https://www.jawg.io/en/terms/
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: geocodeSearch
       tags:
       - Places
-      summary: Forward geocoding search.
+      summary: Forward geocoding search
       description: Searches for places, addresses, and points of interest matching a free text query and returns ranked results as a GeoJSON FeatureCollection.
       servers:
       - url: https://api.jawg.io
@@ -77,7 +77,7 @@ paths:
       operationId: geocodeAutocomplete
       tags:
       - Places
-      summary: Autocomplete geocoding.
+      summary: Autocomplete geocoding
       description: Returns type-ahead suggestions for a partial text query.
       servers:
       - url: https://api.jawg.io
@@ -114,7 +114,7 @@ paths:
       operationId: geocodeReverse
       tags:
       - Places
-      summary: Reverse geocoding.
+      summary: Reverse geocoding
       description: Returns the places nearest to a latitude/longitude coordinate.
       servers:
       - url: https://api.jawg.io
@@ -155,7 +155,7 @@ paths:
       operationId: getPlaceDetails
       tags:
       - Places
-      summary: Get details for a place by its global identifier.
+      summary: Get details for a place by its global identifier
       description: Returns the full record for a place identified by its gid (source:layer:id).
       servers:
       - url: https://api.jawg.io
@@ -177,21 +177,22 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+    Size:
+      name: size
+      in: query
+      description: Maximum number of results to return.
+      schema:
+        type: integer
+        default: 10
   schemas:
-    GeocodingResponse:
-      type: object
-      description: A GeoJSON FeatureCollection returned by the Places API.
-      properties:
-        type:
-          type: string
-          example: FeatureCollection
-        geocoding:
-          type: object
-          description: Query metadata (version, engine, query echo, timestamp).
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeocodingFeature'
     GeocodingFeature:
       type: object
       properties:
@@ -241,6 +242,20 @@ components:
               type: integer
             message:
               type: string
+    GeocodingResponse:
+      type: object
+      description: A GeoJSON FeatureCollection returned by the Places API.
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        geocoding:
+          type: object
+          description: Query metadata (version, engine, query echo, timestamp).
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeocodingFeature'
   responses:
     Unauthorized:
       description: The access token is missing or invalid.
@@ -248,21 +263,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    Size:
-      name: size
-      in: query
-      description: Maximum number of results to return.
-      schema:
-        type: integer
-        default: 10
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
   securitySchemes:
     accessToken:
       type: apiKey

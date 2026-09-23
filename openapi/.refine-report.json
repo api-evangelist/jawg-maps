@@ -1,13 +1,7 @@
 {
   "provider": "jawg-maps",
   "sources": [
-    "jawg-maps-isochrone-api-openapi.yml",
-    "jawg-maps-matrix-api-openapi.yml",
-    "jawg-maps-places-api-openapi.yml",
-    "jawg-maps-routing-api-openapi.yml",
-    "jawg-maps-static-maps-api-openapi.yml",
-    "jawg-maps-styles-api-openapi.yml",
-    "jawg-maps-tiles-api-openapi.yml"
+    "_original/jawg-maps-openapi.yml"
   ],
   "outputs": [
     "jawg-maps-isochrone-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "jawg-maps-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "jawg-maps-isochrone-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jawg-maps-matrix-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jawg-maps-places-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jawg-maps-routing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jawg-maps-static-maps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jawg-maps-styles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jawg-maps-tiles-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

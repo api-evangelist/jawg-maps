@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Jawg Maps Isochrone Static Maps API
+  title: Jawg Maps Static Maps API
   description: 'Representative OpenAPI description of the public Jawg location platform: customizable vector and raster map tiles and hosted styles (tile.jawg.io), Places geocoding, Valhalla-based routing, matrix and isochrone services, and static maps (api.jawg.io). Every request is authenticated with a Jawg access token supplied as the `access-token` query parameter (a Bearer token in the Authorization header is also accepted on the api.jawg.io surfaces).'
   termsOfService: https://www.jawg.io/en/terms/
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: getStaticMap
       tags:
       - Static Maps
-      summary: Render a standalone static map image.
+      summary: Render a standalone static map image
       description: Renders a static map image from a center, zoom, and size (or from an auto-fit set of features), optionally decorated with markers and paths.
       servers:
       - url: https://api.jawg.io
@@ -94,6 +94,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
   schemas:
     Error:
       type: object
@@ -105,14 +113,6 @@ components:
               type: integer
             message:
               type: string
-  parameters:
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: The access token is missing or invalid.
