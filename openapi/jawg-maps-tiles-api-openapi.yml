@@ -71,14 +71,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    StyleId:
-      name: styleId
-      in: path
-      required: true
-      description: The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID).
-      schema:
-        type: string
-      example: jawg-streets
     AccessTokenQuery:
       name: access-token
       in: query
@@ -86,19 +78,6 @@ components:
       description: Your Jawg access token.
       schema:
         type: string
-    Worldview:
-      name: worldview
-      in: query
-      description: Worldview used to render disputed borders.
-      schema:
-        type: string
-    Y:
-      name: y
-      in: path
-      required: true
-      description: Tile row.
-      schema:
-        type: integer
     Lang:
       name: lang
       in: query
@@ -119,6 +98,27 @@ components:
       description: Tile zoom level.
       schema:
         type: integer
+    Y:
+      name: y
+      in: path
+      required: true
+      description: Tile row.
+      schema:
+        type: integer
+    Worldview:
+      name: worldview
+      in: query
+      description: Worldview used to render disputed borders.
+      schema:
+        type: string
+    StyleId:
+      name: styleId
+      in: path
+      required: true
+      description: The hosted Jawg style identifier (e.g. jawg-sunny, jawg-streets, or a custom style ID).
+      schema:
+        type: string
+      example: jawg-streets
   schemas:
     Error:
       type: object

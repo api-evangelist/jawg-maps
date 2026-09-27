@@ -53,6 +53,16 @@ components:
       schema:
         type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     MatrixRequest:
       type: object
       required:
@@ -75,16 +85,6 @@ components:
           - bicycle
           - pedestrian
           example: auto
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
     Location:
       type: object
       required:

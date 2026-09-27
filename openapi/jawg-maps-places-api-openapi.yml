@@ -193,6 +193,30 @@ components:
         type: integer
         default: 10
   schemas:
+    GeocodingResponse:
+      type: object
+      description: A GeoJSON FeatureCollection returned by the Places API.
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        geocoding:
+          type: object
+          description: Query metadata (version, engine, query echo, timestamp).
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeocodingFeature'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     GeocodingFeature:
       type: object
       properties:
@@ -232,30 +256,6 @@ components:
               type: string
             locality:
               type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-    GeocodingResponse:
-      type: object
-      description: A GeoJSON FeatureCollection returned by the Places API.
-      properties:
-        type:
-          type: string
-          example: FeatureCollection
-        geocoding:
-          type: object
-          description: Query metadata (version, engine, query echo, timestamp).
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeocodingFeature'
   responses:
     Unauthorized:
       description: The access token is missing or invalid.

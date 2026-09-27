@@ -70,6 +70,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
   schemas:
     RouteRequest:
       type: object
@@ -132,14 +140,6 @@ components:
           - through
           - via
           - break_through
-  parameters:
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: The access token is missing or invalid.
