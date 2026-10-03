@@ -178,13 +178,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
     Size:
       name: size
       in: query
@@ -192,7 +185,24 @@ components:
       schema:
         type: integer
         default: 10
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     GeocodingResponse:
       type: object
       description: A GeoJSON FeatureCollection returned by the Places API.
@@ -207,16 +217,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GeocodingFeature'
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
     GeocodingFeature:
       type: object
       properties:

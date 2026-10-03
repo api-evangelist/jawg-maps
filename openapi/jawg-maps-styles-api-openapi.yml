@@ -68,25 +68,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
-    Lang:
-      name: lang
-      in: query
-      description: Preferred label language (ISO 639-1).
-      schema:
-        type: string
-    Worldview:
-      name: worldview
-      in: query
-      description: Worldview used to render disputed borders.
-      schema:
-        type: string
     StyleId:
       name: styleId
       in: path
@@ -95,6 +76,25 @@ components:
       schema:
         type: string
       example: jawg-streets
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+    Worldview:
+      name: worldview
+      in: query
+      description: Worldview used to render disputed borders.
+      schema:
+        type: string
+    Lang:
+      name: lang
+      in: query
+      description: Preferred label language (ISO 639-1).
+      schema:
+        type: string
   schemas:
     Error:
       type: object

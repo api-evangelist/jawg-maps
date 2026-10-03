@@ -44,15 +44,26 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
   schemas:
+    Location:
+      type: object
+      required:
+      - lat
+      - lon
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+        type:
+          type: string
+          enum:
+          - break
+          - through
+          - via
+          - break_through
     Error:
       type: object
       properties:
@@ -85,25 +96,6 @@ components:
           - bicycle
           - pedestrian
           example: auto
-    Location:
-      type: object
-      required:
-      - lat
-      - lon
-      properties:
-        lat:
-          type: number
-          format: double
-        lon:
-          type: number
-          format: double
-        type:
-          type: string
-          enum:
-          - break
-          - through
-          - via
-          - break_through
   responses:
     Unauthorized:
       description: The access token is missing or invalid.
@@ -111,6 +103,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
   securitySchemes:
     accessToken:
       type: apiKey
