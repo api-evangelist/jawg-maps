@@ -64,6 +64,16 @@ components:
           - through
           - via
           - break_through
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     IsochroneRequest:
       type: object
       required:
@@ -98,16 +108,6 @@ components:
         polygons:
           type: boolean
           default: false
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
   responses:
     Unauthorized:
       description: The access token is missing or invalid.
