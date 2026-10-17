@@ -45,6 +45,16 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
     Location:
       type: object
       required:
@@ -86,23 +96,6 @@ components:
           - bicycle
           - pedestrian
           example: auto
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-  responses:
-    Unauthorized:
-      description: The access token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     AccessTokenQuery:
       name: access-token
@@ -111,6 +104,13 @@ components:
       description: Your Jawg access token.
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessToken:
       type: apiKey

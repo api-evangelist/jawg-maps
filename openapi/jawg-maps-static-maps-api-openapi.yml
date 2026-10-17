@@ -105,6 +105,13 @@ components:
               type: integer
             message:
               type: string
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     AccessTokenQuery:
       name: access-token
@@ -113,13 +120,6 @@ components:
       description: Your Jawg access token.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: The access token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessToken:
       type: apiKey

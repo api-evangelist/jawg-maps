@@ -45,25 +45,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Location:
-      type: object
-      required:
-      - lat
-      - lon
-      properties:
-        lat:
-          type: number
-          format: double
-        lon:
-          type: number
-          format: double
-        type:
-          type: string
-          enum:
-          - break
-          - through
-          - via
-          - break_through
     Error:
       type: object
       properties:
@@ -108,13 +89,25 @@ components:
         polygons:
           type: boolean
           default: false
-  responses:
-    Unauthorized:
-      description: The access token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Location:
+      type: object
+      required:
+      - lat
+      - lon
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+        type:
+          type: string
+          enum:
+          - break
+          - through
+          - via
+          - break_through
   parameters:
     AccessTokenQuery:
       name: access-token
@@ -123,6 +116,13 @@ components:
       description: Your Jawg access token.
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessToken:
       type: apiKey

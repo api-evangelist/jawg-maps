@@ -178,30 +178,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    GeocodingResponse:
-      type: object
-      description: A GeoJSON FeatureCollection returned by the Places API.
-      properties:
-        type:
-          type: string
-          example: FeatureCollection
-        geocoding:
-          type: object
-          description: Query metadata (version, engine, query echo, timestamp).
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeocodingFeature'
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
     GeocodingFeature:
       type: object
       properties:
@@ -241,21 +217,31 @@ components:
               type: string
             locality:
               type: string
-  responses:
-    Unauthorized:
-      description: The access token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    GeocodingResponse:
+      type: object
+      description: A GeoJSON FeatureCollection returned by the Places API.
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        geocoding:
+          type: object
+          description: Query metadata (version, engine, query echo, timestamp).
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeocodingFeature'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
   parameters:
-    AccessTokenQuery:
-      name: access-token
-      in: query
-      required: true
-      description: Your Jawg access token.
-      schema:
-        type: string
     Size:
       name: size
       in: query
@@ -263,6 +249,20 @@ components:
       schema:
         type: integer
         default: 10
+    AccessTokenQuery:
+      name: access-token
+      in: query
+      required: true
+      description: Your Jawg access token.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: The access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessToken:
       type: apiKey
