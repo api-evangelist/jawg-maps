@@ -1,4 +1,4 @@
-# Jawg Maps (jawg-maps)
+# Jawg Maps
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,163 +66,128 @@
 
 Jawg is a French location platform delivering customizable vector and raster map tiles, hosted map styles, geocoding and places search, routing, isochrones, distance matrices, and static maps. All surfaces are authenticated with a Jawg access token passed as an access-token query parameter (or header) and are served from tile.jawg.io and api.jawg.io.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/jawg-maps/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/jawg-maps/refs/heads/main/apis.yml)
+**Areas:** Maps · Geospatial · Tiles · Geocoding · Routing · Location
 
-## Tags
+## Jawg Maps on APIs.io
 
-- Maps
-- Geospatial
-- Tiles
-- Geocoding
-- Routing
-- Location
+Everything profiled for Jawg Maps is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/jawg-maps/](https://apis.io/providers/jawg-maps/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-01
-- **Modified:** 2026-07-01
+- [Jawg Maps Isochrone API](https://apis.io/apis/jawg-maps/jawg-maps-isochrone-api/) — The Isochrone API from Jawg Maps — 1 operation(s) for isochrone.
+- [Jawg Maps Matrix API](https://apis.io/apis/jawg-maps/jawg-maps-matrix-api/) — The Matrix API from Jawg Maps — 1 operation(s) for matrix.
+- [Jawg Maps Places API](https://apis.io/apis/jawg-maps/jawg-maps-places-api/) — The Places API from Jawg Maps — 4 operation(s) for places.
+- [Jawg Maps Routing API](https://apis.io/apis/jawg-maps/jawg-maps-routing-api/) — The Routing API from Jawg Maps — 2 operation(s) for routing.
+- [Jawg Maps Static Maps API](https://apis.io/apis/jawg-maps/jawg-maps-static-maps-api/) — The Static Maps API from Jawg Maps — 1 operation(s) for static maps.
+- [Jawg Maps Styles API](https://apis.io/apis/jawg-maps/jawg-maps-styles-api/) — The Styles API from Jawg Maps — 2 operation(s) for styles.
+- [Jawg Maps Tiles API](https://apis.io/apis/jawg-maps/jawg-maps-tiles-api/) — The Tiles API from Jawg Maps — 2 operation(s) for tiles.
 
-## APIs
+### Published properties
 
-### Jawg Map Tiles & Styles API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Serves customizable slippy-map tiles in the XYZ scheme for both vector (Mapbox Vector Tile) and raster (PNG) formats using a hosted style ID, plus the style JSON and TileJSON metadata documents. Supports retina @2x tiles, language and worldview parameters, and a WMTS entrypoint.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.jawg.io/docs/apidocs/maps/](https://www.jawg.io/docs/apidocs/maps/)
-- **Base URL:** `https://tile.jawg.io`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Jawg Maps Agentic Access](https://apis.io/agentic-access/jawg-maps/jawg-maps-agentic-access/)
 
-- Tiles
-- Vector Tiles
-- Raster Tiles
-- Styles
-- TileJSON
+#### Collections (8)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://www.jawg.io/docs/apidocs/maps/)
-- [API Reference](https://www.jawg.io/docs/apidocs/maps/dynamic-maps/)
-- [OpenAPI](openapi/jawg-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jawg-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jawg-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Jawg Maps API](https://apis.io/collections/jawg-maps/open-jawg-maps/)
+- [Jawg Maps Isochrone API](https://apis.io/collections/jawg-maps/open-jawg-maps-isochrone-api/)
+- [Jawg Maps Isochrone Matrix API](https://apis.io/collections/jawg-maps/open-jawg-maps-matrix-api/)
+- [Jawg Maps Isochrone Places API](https://apis.io/collections/jawg-maps/open-jawg-maps-places-api/)
+- [Jawg Maps Isochrone Routing API](https://apis.io/collections/jawg-maps/open-jawg-maps-routing-api/)
+- [Jawg Maps Isochrone Static Maps API](https://apis.io/collections/jawg-maps/open-jawg-maps-static-maps-api/)
+- [Jawg Maps Isochrone Styles API](https://apis.io/collections/jawg-maps/open-jawg-maps-styles-api/)
+- [Jawg Maps Isochrone Tiles API](https://apis.io/collections/jawg-maps/open-jawg-maps-tiles-api/)
 
-### Jawg Places / Geocoding API
+#### Security (2)
 
-Forward geocoding, autocomplete, reverse geocoding, and place-detail lookup returning GeoJSON features. Results can be biased and filtered by point, bounding box, layers, sources, and country.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://www.jawg.io/docs/apidocs/places/](https://www.jawg.io/docs/apidocs/places/)
-- **Base URL:** `https://api.jawg.io/places/v1`
+- [Jawg Maps Authentication](https://apis.io/security/jawg-maps/jawg-maps-authentication/)
+- [Jawg Maps Domain Security](https://apis.io/security/jawg-maps/jawg-maps-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Geocoding
-- Places
-- Search
-- Autocomplete
-- Reverse Geocoding
+Published plans, tiers and prices.
 
-#### Properties
+- [Jawg Maps Plans Pricing](https://apis.io/plans/jawg-maps/jawg-maps-plans-pricing/)
 
-- [Documentation](https://www.jawg.io/docs/apidocs/places/)
-- [API Reference](https://www.jawg.io/docs/apidocs/places/search/)
-- [OpenAPI](openapi/jawg-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jawg-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jawg-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Jawg Routing API
+Published request limits.
 
-Valhalla-based turn-by-turn routing computing the shortest route or distance between locations across auto, bicycle, and pedestrian costing models, plus an optimized_route (traveling-salesman) endpoint. An OSRM-compatible routing surface is also available.
+- [Jawg Maps Rate Limits](https://apis.io/rate-limits/jawg-maps/jawg-maps-rate-limits/)
 
-- **Human URL:** [https://www.jawg.io/docs/apidocs/routing/](https://www.jawg.io/docs/apidocs/routing/)
-- **Base URL:** `https://api.jawg.io/routing`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Routing
-- Directions
-- Valhalla
-- Turn by Turn
+- [Jawg Maps Finops](https://apis.io/finops/jawg-maps/jawg-maps-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://www.jawg.io/docs/apidocs/routing/)
-- [API Reference](https://www.jawg.io/docs/apidocs/routing/osrm/)
-- [OpenAPI](openapi/jawg-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jawg-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jawg-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Jawg Matrix API
-
-Valhalla sources_to_targets time-distance matrix service computing travel time and distance between every source and every target location for a given costing model.
-
-- **Human URL:** [https://www.jawg.io/docs/apidocs/routing/](https://www.jawg.io/docs/apidocs/routing/)
-- **Base URL:** `https://api.jawg.io/routing`
-
-#### Tags
-
-- Matrix
-- Distance Matrix
-- Valhalla
-
-#### Properties
-
-- [Documentation](https://www.jawg.io/docs/apidocs/routing/)
-- [OpenAPI](openapi/jawg-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jawg-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jawg-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Jawg Isochrone API
-
-Valhalla isochrone service computing areas reachable within specified time or distance intervals from one or more locations, returned as GeoJSON polygon or line contours.
-
-- **Human URL:** [https://www.jawg.io/docs/apidocs/routing/](https://www.jawg.io/docs/apidocs/routing/)
-- **Base URL:** `https://api.jawg.io/routing`
-
-#### Tags
-
-- Isochrone
-- Reachability
-- Valhalla
-
-#### Properties
-
-- [Documentation](https://www.jawg.io/docs/apidocs/routing/)
-- [OpenAPI](openapi/jawg-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jawg-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jawg-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Jawg Static Maps API
-
-Renders a standalone map image (PNG/JPEG) from a center, zoom, and size, or from an auto-fit set of features, with optional markers and paths - for display on web and mobile without JavaScript.
-
-- **Human URL:** [https://www.jawg.io/docs/apidocs/maps/static-maps/](https://www.jawg.io/docs/apidocs/maps/static-maps/)
-- **Base URL:** `https://api.jawg.io`
-
-#### Tags
-
-- Static Maps
-- Images
-- Markers
-
-#### Properties
-
-- [Documentation](https://www.jawg.io/docs/apidocs/maps/static-maps/)
-- [OpenAPI](openapi/jawg-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jawg-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jawg-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/jawg)
-- [LinkedIn](https://www.linkedin.com/company/jawg-maps)
 - [Website](https://www.jawg.io/)
 - [Documentation](https://www.jawg.io/docs/)
-- [Plans](plans/jawg-maps-plans-pricing.yml)
-- [Rate Limits](rate-limits/jawg-maps-rate-limits.yml)
-- [Fin Ops](finops/jawg-maps-finops.yml)
+- [Blog](https://blog.jawg.io/feed/)
+- [GitHub](https://github.com/jawg)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/jawg-maps/](https://apis.io/providers/jawg-maps/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Jawg Maps: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/jawg-maps/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
